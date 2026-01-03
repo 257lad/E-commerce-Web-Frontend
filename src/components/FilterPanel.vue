@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border dark:border-gray-700 p-4 sm:p-6 transition-colors">
+  <div class="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
     <div class="flex items-center justify-between mb-4 sm:mb-6">
-      <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">Filters</h3>
+      <h3 class="text-lg sm:text-xl font-semibold text-gray-900">Filters</h3>
       <button
         v-if="hasActiveFilters"
         @click="clearFilters"
-        class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+        class="text-sm text-blue-600 hover:text-blue-700 font-medium"
       >
         Clear All
       </button>
@@ -13,7 +13,7 @@
 
     <!-- Category Filter -->
     <div class="mb-6">
-      <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Category</h4>
+      <h4 class="text-sm font-semibold text-gray-700 mb-3">Category</h4>
       <div class="space-y-2">
         <label
           v-for="category in categories"
@@ -24,10 +24,10 @@
             v-model="selectedCategory"
             type="radio"
             :value="category"
-            class="w-4 h-4 text-blue-600 border-gray-300 dark:border-gray-600 focus:ring-blue-500 dark:bg-gray-700"
+            class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
             @change="handleCategoryChange"
           />
-          <span class="ml-2 text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
+          <span class="ml-2 text-sm text-gray-700 group-hover:text-gray-900">
             {{ category }}
           </span>
         </label>
@@ -36,7 +36,7 @@
 
     <!-- Price Range Filter -->
     <div class="mb-6">
-      <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Price Range</h4>
+      <h4 class="text-sm font-semibold text-gray-700 mb-3">Price Range</h4>
       <div class="space-y-3">
         <div class="flex items-center gap-2">
           <input
@@ -45,17 +45,17 @@
             placeholder="Min"
             min="0"
             step="0.01"
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-900 placeholder-gray-400"
             @input="handlePriceChange"
           />
-          <span class="text-gray-500 dark:text-gray-400">-</span>
+          <span class="text-gray-500">-</span>
           <input
             v-model.number="maxPrice"
             type="number"
             placeholder="Max"
             min="0"
             step="0.01"
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-900 placeholder-gray-400"
             @input="handlePriceChange"
           />
         </div>
@@ -68,7 +68,7 @@
               'px-3 py-1.5 text-xs sm:text-sm rounded-md transition-colors',
               isPriceRangeActive(range.min, range.max)
                 ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             ]"
           >
             {{ range.label }}
@@ -79,11 +79,11 @@
 
     <!-- Sort Options -->
     <div>
-      <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Sort By</h4>
+      <h4 class="text-sm font-semibold text-gray-700 mb-3">Sort By</h4>
       <select
         v-model="sortBy"
         @change="handleSortChange"
-        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-900"
       >
         <option value="name-asc">Name (A-Z)</option>
         <option value="name-desc">Name (Z-A)</option>
@@ -169,4 +169,3 @@ const emitFilters = () => {
 // Emit initial filters
 emitFilters()
 </script>
-

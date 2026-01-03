@@ -1,12 +1,12 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col transition-colors duration-300">
+  <div class="min-h-screen bg-gray-50 flex flex-col">
     <NavBar :user="user" :cart-count="cartStore.totalItems" @open-cart="openCart" />
 
     <main class="flex-grow">
       <Hero />
-      <section id="products" class="py-8 sm:py-12 lg:py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <section id="products" class="py-8 sm:py-12 lg:py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 text-gray-900 dark:text-white">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 text-gray-900">
             Featured Products
           </h2>
           
@@ -26,8 +26,8 @@
             <!-- Products Grid -->
             <div class="flex-1 order-1 lg:order-2">
               <div class="mb-4 sm:mb-6 flex items-center justify-between flex-wrap gap-2">
-                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                  Showing <span class="font-semibold text-gray-900 dark:text-white">{{ filteredProducts.length }}</span> 
+                <p class="text-sm sm:text-base text-gray-600">
+                  Showing <span class="font-semibold text-gray-900">{{ filteredProducts.length }}</span> 
                   {{ filteredProducts.length === 1 ? 'product' : 'products' }}
                 </p>
               </div>
@@ -50,7 +50,6 @@ import { useCartStore } from '@/store/cart'
 import { mockProducts } from '@/data/mock_data'
 import { mockUser } from '@/data/user'
 import { useProductFilter } from '@/composables/useProductFilter'
-import { useTheme } from '@/composables/useTheme'
 import type { FilterOptions } from '@/components/FilterPanel'
 import NavBar from './components/NavBar.vue'
 import Hero from './components/Hero.vue'
@@ -59,14 +58,10 @@ import FilterPanel from './components/FilterPanel.vue'
 import ProductGrid from './components/ProductGrid.vue'
 import CartDrawer from './components/CartDrawer.vue'
 import Footer from './components/Footer.vue'
-import ThemeToggle from './components/ThemeToggle.vue'
-import LanguageToggle from './components/LanguageToggle.vue'
 
 const cartStore = useCartStore()
 const user = mockUser
 
-// Initialize theme on app mount
-useTheme()
 const isCartOpen = ref(false)
 
 const searchQuery = ref('')

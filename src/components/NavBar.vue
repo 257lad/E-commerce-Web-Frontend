@@ -1,30 +1,30 @@
 <template>
-  <nav class="bg-white dark:bg-gray-800 shadow-sm border-b dark:border-gray-700 sticky top-0 z-40 transition-colors duration-300">
+  <nav class="bg-white shadow-sm border-b sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-20">
         <!-- Logo -->
         <div class="flex items-center gap-2">
-          <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">VibeShop</h1>
+          <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">VibeShop</h1>
         </div>
 
         <!-- Navigation Links (Desktop) -->
         <div class="hidden md:flex items-center gap-6 lg:gap-8">
           <a
             href="#products"
-            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+            class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             @click.prevent="scrollToSection('products')"
           >
             Products
           </a>
           <a
             href="#"
-            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+            class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
           >
             About
           </a>
           <a
             href="#"
-            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+            class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
           >
             Contact
           </a>
@@ -32,15 +32,14 @@
 
         <!-- Right Side: Cart and Profile -->
         <div class="flex items-center gap-2 sm:gap-3">
-          <!-- Theme and Language Toggles -->
+          <!-- Language Toggle -->
           <div class="hidden sm:flex items-center gap-1">
             <LanguageToggle />
-            <ThemeToggle />
           </div>
           <!-- Cart Button -->
           <button
             @click="$emit('open-cart')"
-            class="relative p-2 sm:p-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+            class="relative p-2 sm:p-3 hover:bg-gray-100 rounded-md transition-colors"
             aria-label="Open shopping cart"
           >
             <ShoppingCart :size="20" class="sm:w-6 sm:h-6" />
@@ -56,17 +55,17 @@
           <div class="relative" ref="dropdownRef">
             <button
               @click="toggleDropdown"
-              class="flex items-center gap-2 sm:gap-3 p-1 sm:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              class="flex items-center gap-2 sm:gap-3 p-1 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors"
               aria-label="User menu"
             >
               <img
                 :src="user.avatar"
                 :alt="user.name"
-                class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-colors"
+                class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-200 hover:border-blue-500 transition-colors"
               />
               <div class="hidden sm:block text-left">
-                <div class="text-sm font-semibold text-gray-900 dark:text-white">{{ user.name }}</div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">{{ user.email }}</div>
+                <div class="text-sm font-semibold text-gray-900">{{ user.name }}</div>
+                <div class="text-xs text-gray-500">{{ user.email }}</div>
               </div>
               <ChevronDown
                 :size="16"
@@ -78,7 +77,7 @@
             <!-- Dropdown Menu -->
             <div
               v-if="isDropdownOpen"
-              class="absolute right-0 mt-2 w-56 sm:w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50"
+              class="absolute right-0 mt-2 w-56 sm:w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
             >
               <div class="px-4 py-3 border-b border-gray-200">
                 <div class="flex items-center gap-3">
@@ -95,7 +94,7 @@
               </div>
               <a
                 href="#"
-                class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                 @click.prevent="closeDropdown"
               >
                 <User :size="18" />
@@ -103,7 +102,7 @@
               </a>
               <a
                 href="#"
-                class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                 @click.prevent="closeDropdown"
               >
                 <ShoppingBag :size="18" />
@@ -111,7 +110,7 @@
               </a>
               <a
                 href="#"
-                class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                 @click.prevent="closeDropdown"
               >
                 <Settings :size="18" />
@@ -177,7 +176,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { ShoppingCart, ChevronDown, User, ShoppingBag, Settings, LogOut, Menu, X } from 'lucide-vue-next'
 import type { User as UserType } from '@/data/user'
-import ThemeToggle from './ThemeToggle.vue'
 import LanguageToggle from './LanguageToggle.vue'
 
 interface Props {
@@ -232,4 +230,3 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 </script>
-
