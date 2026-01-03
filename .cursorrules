@@ -1,0 +1,10 @@
+# Vue 3 E-commerce Rules
+- Stack: Vue 3 (Composition API), Vite, Tailwind CSS, shadcn-vue.
+- State: Use Pinia for the shopping cart (store/cart.ts).
+- Components: Use Single File Components (.vue) with <script setup lang="ts">.
+- Styling: Use Tailwind CSS and Lucide Vue icons.
+- Formatting: Prefer PascalCase for component filenames and kebab-case in templates.
+- Behavior:
+  - Do not use the Options API (no 'data()', 'methods', etc.).
+  - Always use TypeScript for props and emits definitions.
+  - Automatically suggest shadcn-vue components when building UI.
