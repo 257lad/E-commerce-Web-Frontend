@@ -42,7 +42,7 @@
             class="relative p-2 sm:p-3 hover:bg-gray-100 rounded-md transition-colors"
             aria-label="Open shopping cart"
           >
-            <ShoppingCart :size="20" class="sm:w-6 sm:h-6" />
+            <ShoppingCart :size="20" class="sm:w-6 sm:h-6 text-gray-700" />
             <span
               v-if="cartCount > 0"
               class="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
@@ -97,7 +97,7 @@
                 class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                 @click.prevent="closeDropdown"
               >
-                <User :size="18" />
+                <User :size="18" class="text-gray-500" />
                 My Profile
               </a>
               <a
@@ -105,7 +105,7 @@
                 class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                 @click.prevent="closeDropdown"
               >
-                <ShoppingBag :size="18" />
+                <ShoppingBag :size="18" class="text-gray-500" />
                 My Orders
               </a>
               <a
@@ -113,7 +113,7 @@
                 class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                 @click.prevent="closeDropdown"
               >
-                <Settings :size="18" />
+                <Settings :size="18" class="text-gray-500" />
                 Settings
               </a>
               <div class="border-t border-gray-200 mt-2 pt-2">
@@ -122,7 +122,7 @@
                   class="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                   @click.prevent="closeDropdown"
                 >
-                  <LogOut :size="18" />
+                  <LogOut :size="18" class="text-red-600" />
                   Sign Out
                 </a>
               </div>
@@ -135,8 +135,8 @@
             class="md:hidden p-2 hover:bg-gray-100 rounded-md transition-colors"
             aria-label="Menu"
           >
-            <Menu v-if="!isMobileMenuOpen" :size="24" />
-            <X v-else :size="24" />
+            <Menu v-if="!isMobileMenuOpen" :size="24" class="text-gray-700" />
+            <X v-else :size="24" class="text-gray-700" />
           </button>
         </div>
       </div>
