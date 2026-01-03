@@ -59,13 +59,13 @@
             @input="handlePriceChange"
           />
         </div>
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
           <button
             v-for="range in priceRanges"
             :key="range.label"
             @click="applyPriceRange(range.min, range.max)"
             :class="[
-              'px-3 py-1.5 text-xs sm:text-sm rounded-md transition-colors',
+              'px-2 py-1.5 text-xs rounded-md transition-colors whitespace-nowrap',
               isPriceRangeActive(range.min, range.max)
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
