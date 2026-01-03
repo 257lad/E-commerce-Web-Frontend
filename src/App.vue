@@ -1,31 +1,12 @@
 <template>
-  <div class="min-h-screen bg-gray-50 flex flex-col">
-    <header class="bg-white shadow-sm border-b sticky top-0 z-40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 sm:h-20">
-          <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">VibeShop</h1>
-          <button
-            @click="openCart"
-            class="relative p-2 sm:p-3 hover:bg-gray-100 rounded-md transition-colors"
-            aria-label="Open shopping cart"
-          >
-            <ShoppingCart :size="20" class="sm:w-6 sm:h-6" />
-            <span
-              v-if="cartStore.totalItems > 0"
-              class="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
-            >
-              {{ cartStore.totalItems }}
-            </span>
-          </button>
-        </div>
-      </div>
-    </header>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col transition-colors duration-300">
+    <NavBar :user="user" :cart-count="cartStore.totalItems" @open-cart="openCart" />
 
     <main class="flex-grow">
       <Hero />
-      <section id="products" class="py-8 sm:py-12 lg:py-16 bg-gray-50">
+      <section id="products" class="py-8 sm:py-12 lg:py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 text-gray-900">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 text-gray-900 dark:text-white">
             Featured Products
           </h2>
           
@@ -45,8 +26,8 @@
             <!-- Products Grid -->
             <div class="flex-1 order-1 lg:order-2">
               <div class="mb-4 sm:mb-6 flex items-center justify-between flex-wrap gap-2">
-                <p class="text-sm sm:text-base text-gray-600">
-                  Showing <span class="font-semibold text-gray-900">{{ filteredProducts.length }}</span> 
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                  Showing <span class="font-semibold text-gray-900 dark:text-white">{{ filteredProducts.length }}</span> 
                   {{ filteredProducts.length === 1 ? 'product' : 'products' }}
                 </p>
               </div>
@@ -66,18 +47,26 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useCartStore } from '@/store/cart'
-import { ShoppingCart } from 'lucide-vue-next'
 import { mockProducts } from '@/data/mock_data'
+import { mockUser } from '@/data/user'
 import { useProductFilter } from '@/composables/useProductFilter'
+import { useTheme } from '@/composables/useTheme'
 import type { FilterOptions } from '@/components/FilterPanel'
+import NavBar from './components/NavBar.vue'
 import Hero from './components/Hero.vue'
 import SearchBar from './components/SearchBar.vue'
 import FilterPanel from './components/FilterPanel.vue'
 import ProductGrid from './components/ProductGrid.vue'
 import CartDrawer from './components/CartDrawer.vue'
 import Footer from './components/Footer.vue'
+import ThemeToggle from './components/ThemeToggle.vue'
+import LanguageToggle from './components/LanguageToggle.vue'
 
 const cartStore = useCartStore()
+const user = mockUser
+
+// Initialize theme on app mount
+useTheme()
 const isCartOpen = ref(false)
 
 const searchQuery = ref('')
